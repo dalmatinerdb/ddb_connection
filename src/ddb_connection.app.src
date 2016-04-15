@@ -1,16 +1,18 @@
 {application, ddb_connection,
- [{description, "An OTP application"},
+ [{description, "DDB client connection"},
   {vsn, "0.1.0"},
   {registered, []},
   {mod, { ddb_connection_app, []}},
   {applications,
    [kernel,
-    stdlib
+    stdlib,
+    poolboy,
+    ddb_client
    ]},
   {env,[]},
   {modules, []},
 
-  {maintainers, []},
-  {licenses, []},
+  {maintainers, ["Heinz N. Gies"]},
+  {licenses, ["MIT"]},
   {links, []}
  ]}.
