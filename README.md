@@ -1,7 +1,7 @@
 ddb_connection
 =====
 
-An OTP application
+Application providing DDB conneciton pool.
 
 Build
 -----
