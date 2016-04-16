@@ -1,18 +1,11 @@
-{application, ddb_connection,
- [{description, "DDB client connection"},
-  {vsn, "0.1.0"},
-  {registered, []},
-  {mod, { ddb_connection_app, []}},
-  {applications,
-   [kernel,
-    stdlib,
-    poolboy,
-    ddb_client
-   ]},
-  {env,[]},
-  {modules, []},
-
-  {maintainers, ["Heinz N. Gies"]},
-  {licenses, ["MIT"]},
-  {links, []}
- ]}.
+{application,ddb_connection,
+             [{description,"DDB client connection"},
+              {vsn,"0.1.1"},
+              {registered,[]},
+              {mod,{ddb_connection_app,[]}},
+              {applications,[kernel,stdlib,poolboy,ddb_client]},
+              {env,[]},
+              {modules,[]},
+              {maintainers,["Heinz N. Gies"]},
+              {licenses,["MIT"]},
+              {links,[]}]}.
