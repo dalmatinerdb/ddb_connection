@@ -5,6 +5,11 @@
  [{default, {"127.0.0.1", 5555}},
   {datatype, ip}]}.
 
+%% @doc Maximum number of datapoints to read in 1 chunk
+{mapping, "max_read", "ddb_connection.max_read",
+ [{default, 604800},
+  {datatype, integer}]}.
+
 %% @doc Initial number of conneciton pool workers
 {mapping, "pool.size", "ddb_connection.pool_size",
  [{default, 20},
@@ -12,5 +17,5 @@
 
 %% @doc Maximum number of conneciton pool workers
 {mapping, "pool.max", "ddb_connection.pool_max",
- [{default, 50},
+ [{default, 5},
   {datatype, integer}]}.

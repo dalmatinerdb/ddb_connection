@@ -80,7 +80,7 @@ start_link(Args) ->
 %% @end
 %%--------------------------------------------------------------------
 init([Host, Port]) ->
-    {ok, MaxRead} = application:get_env(dqe, max_read),
+    {ok, MaxRead} = application:get_env(ddb_connection, max_read),
     {ok, #state{max_read=MaxRead, host = Host, port = Port}, 0}.
 
 %%--------------------------------------------------------------------
