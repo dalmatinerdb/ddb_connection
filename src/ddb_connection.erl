@@ -12,7 +12,7 @@
 -behaviour(poolboy_worker).
 
 %% API
--export([start_link/1, get/4, list/2, list/1, list/0]).
+-export([start_link/1, get/4, list/2, list/1, list/0, resolution/1]).
 -ignore_xref([start_link/2]).
 
 %% gen_server callbacks
@@ -33,11 +33,18 @@ get(Bucket, Metric, Time, Count) ->
     Worker = worker({get, Bucket, Metric, Time, Count}),
     transact(?POOL, Worker, ?TIMEOUT).
 
+resolution(Bucket) ->
+    transact(?POOL,
+             fun(Worker) ->
+                     gen_server:call(Worker, {resolution, Bucket}, ?TIMEOUT)
+             end, ?TIMEOUT).
+
 list(Bucket) ->
     transact(?POOL,
              fun(Worker) ->
                      gen_server:call(Worker, {list, Bucket}, ?TIMEOUT)
              end, ?TIMEOUT).
+
 list(Bucket, Prefix) ->
     transact(?POOL,
              fun(Worker) ->
@@ -106,6 +113,15 @@ handle_call({get, Bucket, Metric, Time, Count}, _From,
     case ddb_tcp:get(Bucket, Metric, Time, Count, C) of
         {ok, {D, Resolution}, C1} ->
             {reply, {ok, D, Resolution}, State#state{connection = C1}};
+        {error, E, C1} ->
+            {reply, {error, E}, State#state{connection = C1}}
+    end;
+
+handle_call({resolution, Bucket}, _From,
+            State = #state{connection = C}) ->
+    case ddb_tcp:resolution(Bucket, C) of
+        {ok, Resolution, C1} ->
+            {reply, {ok, Resolution}, State#state{connection = C1}};
         {error, E, C1} ->
             {reply, {error, E}, State#state{connection = C1}}
     end;
