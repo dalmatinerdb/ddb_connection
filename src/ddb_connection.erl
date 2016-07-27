@@ -119,8 +119,8 @@ handle_call({get, Bucket, Metric, Time, Count}, _From,
 
 handle_call({resolution, Bucket}, _From,
             State = #state{connection = C}) ->
-    case ddb_tcp:resolution(Bucket, C) of
-        {ok, Resolution, C1} ->
+    case ddb_tcp:bucket_info(Bucket, C) of
+        {ok, {Resolution, _, _}, C1} ->
             {reply, {ok, Resolution}, State#state{connection = C1}};
         {error, E, C1} ->
             {reply, {error, E}, State#state{connection = C1}}
