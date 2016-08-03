@@ -1,4 +1,4 @@
-[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.1.24">>},0},
+[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.1.25">>},0},
  {<<"dproto">>,{pkg,<<"dproto">>,<<"0.1.20">>},1},
  {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.0-alpha9">>},1},
  {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0}].
