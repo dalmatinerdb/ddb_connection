@@ -1,21 +1,21 @@
 %% -*- erlang -*-
 
 %% @doc The TCP endpoint for the backend server.
-{mapping, "backend_server", "ddb_connection.backend",
+{mapping, "ddb_connection.backend_server", "ddb_connection.backend",
  [{default, {"127.0.0.1", 5555}},
   {datatype, ip}]}.
 
 %% @doc Maximum number of datapoints to read in 1 chunk
-{mapping, "max_read", "ddb_connection.max_read",
+{mapping, "ddb_connection.max_read", "ddb_connection.max_read",
  [{default, 604800},
   {datatype, integer}]}.
 
-%% @doc Initial number of conneciton pool workers
-{mapping, "pool.size", "ddb_connection.pool_size",
+%% @doc maximum pool size
+{mapping, "ddb_connection.pool.size", "ddb_connection.pool_size",
  [{default, 20},
   {datatype, integer}]}.
 
-%% @doc Maximum number of conneciton pool workers
-{mapping, "pool.max", "ddb_connection.pool_max",
+%% @doc maximum number of workers created if pool is empty
+{mapping, "ddb_connection.pool.max", "ddb_connection.pool_max",
  [{default, 5},
   {datatype, integer}]}.
