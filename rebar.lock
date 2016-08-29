@@ -1,4 +1,8 @@
-[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.1.25">>},0},
+[{<<"ddb_client">>,
+  {git,"https://github.com/dalmatinerdb/ddb_client.git",
+       {ref,"b48a3f462120bba9da5f9648064d1e8b8ff2c781"}},
+  0},
  {<<"dproto">>,{pkg,<<"dproto">>,<<"0.1.20">>},1},
- {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.0-alpha9">>},1},
- {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0}].
+ {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.5">>},1},
+ {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0},
+ {<<"snappy">>,{pkg,<<"snappy">>,<<"1.1.1">>},1}].

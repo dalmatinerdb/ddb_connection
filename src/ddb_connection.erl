@@ -111,8 +111,8 @@ handle_call({get, _, _, _, Count}, _From, State = #state{max_read = MaxRead})
 handle_call({get, Bucket, Metric, Time, Count}, _From,
             State = #state{connection = C}) ->
     case ddb_tcp:get(Bucket, Metric, Time, Count, C) of
-        {ok, {D, Resolution}, C1} ->
-            {reply, {ok, D, Resolution}, State#state{connection = C1}};
+        {ok, D, C1} ->
+            {reply, D, State#state{connection = C1}};
         {error, E, C1} ->
             {reply, {error, E}, State#state{connection = C1}}
     end;
