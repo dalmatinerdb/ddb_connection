@@ -112,7 +112,7 @@ handle_call({get, Bucket, Metric, Time, Count}, _From,
             State = #state{connection = C}) ->
     case ddb_tcp:get(Bucket, Metric, Time, Count, C) of
         {ok, D, C1} ->
-            {reply, D, State#state{connection = C1}};
+            {reply, {ok, D}, State#state{connection = C1}};
         {error, E, C1} ->
             {reply, {error, E}, State#state{connection = C1}}
     end;
