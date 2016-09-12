@@ -13,6 +13,7 @@
 
 %% API
 -export([start_link/1, get/4, list/2, list/1, list/0, resolution/1]).
+-export([events/2, read_events/3]).
 -ignore_xref([start_link/2]).
 
 %% gen_server callbacks
@@ -28,6 +29,14 @@
 %%%===================================================================
 %%% API
 %%%===================================================================
+
+events(Bucket, Events) ->
+    Worker = worker({events, Bucket, Events}),
+    transact(?POOL, Worker, ?TIMEOUT).
+
+read_events(Bucket, Start, End) ->
+    Worker = worker({read_events, Bucket, Start, End}),
+    transact(?POOL, Worker, ?TIMEOUT).
 
 get(Bucket, Metric, Time, Count) ->
     Worker = worker({get, Bucket, Metric, Time, Count}),
@@ -104,6 +113,24 @@ init([Host, Port]) ->
 %%                                   {stop, Reason, State}
 %% @end
 %%--------------------------------------------------------------------
+handle_call({events, Bucket, Events}, _From,
+            State = #state{connection = C}) ->
+    case ddb_tcp:events(Bucket, Events, C) of
+        {ok, C1} ->
+            {reply, ok, State#state{connection = C1}};
+        {error, E, C1} ->
+            {reply, {error, E}, State#state{connection = C1}}
+    end;
+
+handle_call({read_events, Bucket, Start, End}, _From,
+            State = #state{connection = C}) ->
+    case ddb_tcp:read_events(Bucket, Start, End, C) of
+        {ok, D, C1} ->
+            {reply, {ok, D}, State#state{connection = C1}};
+        {error, E, C1} ->
+            {reply, {error, E}, State#state{connection = C1}}
+    end;
+
 handle_call({get, _, _, _, Count}, _From, State = #state{max_read = MaxRead})
   when Count > MaxRead ->
     {reply, {error, too_big}, State};

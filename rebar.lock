@@ -1,5 +1,5 @@
-[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.1.28">>},0},
- {<<"dproto">>,{pkg,<<"dproto">>,<<"0.1.20">>},1},
- {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.7">>},1},
+[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.1.29">>},0},
+ {<<"dproto">>,{pkg,<<"dproto">>,<<"0.1.22">>},1},
+ {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.9">>},1},
  {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0},
  {<<"snappy">>,{pkg,<<"snappy">>,<<"1.1.1">>},1}].
