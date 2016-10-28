@@ -2,8 +2,7 @@
 
 %% @doc The TCP endpoint for the backend server. Doesn't support hostnames.
 {mapping, "ddb_connection.backend_server", "ddb_connection.backend",
- [{default, {"127.0.0.1", 5555}},
-  {datatype, ip}]}.
+ [{datatype, ip}]}.
 
 %% @doc The TCP hostname or IP for the backend server.
 {mapping, "ddb_connection.backend_host", "ddb_connection.backend_host",
