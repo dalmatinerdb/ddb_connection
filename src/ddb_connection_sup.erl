@@ -29,13 +29,15 @@ start_link() ->
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init([]) ->
     {Host, Port} = case application:get_env(ddb_connection, backend) of
-        {Host, Port} ->
-            {Host, Port};
-        _ ->
-            {ok, Host} = application:get_env(ddb_connection, backend_host),
-            {ok, Port} = application:get_env(ddb_connection, backend_port),
-            {Host, Port}
-        end,
+                       {ok, {Host, Port}} ->
+                           {Host, Port};
+                       _ ->
+                           {ok, Host} = application:get_env(ddb_connection,
+                                                            backend_host),
+                           {ok, Port} = application:get_env(ddb_connection,
+                                                            backend_port),
+                           {Host, Port}
+                   end,
     {ok, PoolSize} = application:get_env(ddb_connection, pool_size),
     {ok, PoolMax} = application:get_env(ddb_connection, pool_max),
     SizeArgs = [
