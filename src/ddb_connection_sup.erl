@@ -29,7 +29,7 @@ start_link() ->
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init([]) ->
     {Host, Port} = case application:get_env(ddb_connection, backend) of
-        {ok, Host, Port} ->
+        {Host, Port} ->
             {Host, Port};
         _ ->
             {ok, Host} = application:get_env(ddb_connection, backend_host),
