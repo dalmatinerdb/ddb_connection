@@ -1,15 +1,18 @@
 %% -*- erlang -*-
 
 %% @doc The TCP endpoint for the backend server. Doesn't support hostnames.
+%% This setting overwrites backend_host and backend_port connections.
 {mapping, "ddb_connection.backend_server", "ddb_connection.backend",
  [{datatype, ip}]}.
 
 %% @doc The TCP hostname or IP for the backend server.
+%% Set this or backend_server.
 {mapping, "ddb_connection.backend_host", "ddb_connection.backend_host",
  [{default, "127.0.0.1"},
   {datatype, string}]}.
 
 %% @doc The TCP port for the backend server
+%% Set this or backend_server.
 {mapping, "ddb_connection.backend_port", "ddb_connection.backend_port",
  [{default, 5555},
   {datatype, integer}]}.
