@@ -1,6 +1,6 @@
 {application,ddb_connection,
              [{description,"DDB client connection"},
-              {vsn,"0.1.18"},
+              {vsn,"0.1.19"},
               {registered,[]},
               {mod,{ddb_connection_app,[]}},
               {applications,[kernel,stdlib,poolboy,ddb_client]},
