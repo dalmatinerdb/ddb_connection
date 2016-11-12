@@ -12,7 +12,7 @@
 -behaviour(poolboy_worker).
 
 %% API
--export([start_link/1, get/4, list/2, list/1, list/0, resolution/1]).
+-export([start_link/1, get/4, list/2, list/1, list/0, resolution/1, info/1]).
 -export([events/2, read_events/3, read_events/4]).
 -ignore_xref([start_link/2]).
 
@@ -44,10 +44,23 @@ get(Bucket, Metric, Time, Count) ->
     Worker = worker({get, Bucket, Metric, Time, Count}),
     transact(?POOL, Worker, ?TIMEOUT).
 
+-spec resolution(binary()) ->
+                        {ok, pos_integer()} |
+                        {error, term()}.
 resolution(Bucket) ->
     transact(?POOL,
              fun(Worker) ->
                      gen_server:call(Worker, {resolution, Bucket}, ?TIMEOUT)
+             end, ?TIMEOUT).
+
+-spec info(binary()) ->
+                  {ok, dproto_tcp:bucket_info()} |
+                  {error, term()}.
+
+info(Bucket) ->
+    transact(?POOL,
+             fun(Worker) ->
+                     gen_server:call(Worker, {info, Bucket}, ?TIMEOUT)
              end, ?TIMEOUT).
 
 list(Bucket) ->
@@ -146,10 +159,19 @@ handle_call({get, Bucket, Metric, Time, Count}, _From,
             {reply, {error, E}, State#state{connection = C1}}
     end;
 
+handle_call({info, Bucket}, _From,
+            State = #state{connection = C}) ->
+    case ddb_tcp:bucket_info(Bucket, C) of
+        {ok, Info, C1} ->
+            {reply, {ok, Info}, State#state{connection = C1}};
+        {error, E, C1} ->
+            {reply, {error, E}, State#state{connection = C1}}
+    end;
+
 handle_call({resolution, Bucket}, _From,
             State = #state{connection = C}) ->
     case ddb_tcp:bucket_info(Bucket, C) of
-        {ok, {Resolution, _, _}, C1} ->
+        {ok, #{resolution := Resolution}, C1} ->
             {reply, {ok, Resolution}, State#state{connection = C1}};
         {error, E, C1} ->
             {reply, {error, E}, State#state{connection = C1}}
