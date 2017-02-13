@@ -1,16 +1,16 @@
 {"1.1.0",
 [{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.2.0">>},0},
- {<<"dproto">>,{pkg,<<"dproto">>,<<"0.2.1">>},1},
- {<<"jsxd">>,{pkg,<<"jsxd">>,<<"0.2.3">>},2},
- {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.13">>},1},
+ {<<"dproto">>,{pkg,<<"dproto">>,<<"0.2.3">>},1},
+ {<<"jsxd">>,{pkg,<<"jsxd">>,<<"0.2.4">>},2},
+ {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.15">>},1},
  {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0},
  {<<"snappy">>,{pkg,<<"snappy">>,<<"1.1.1">>},1}]}.
 [
 {pkg_hash,[
  {<<"ddb_client">>, <<"CAFEFB981C6697303285C23EA6C160EB9CD37D516AD4BF2D33126E2BDB0DC571">>},
- {<<"dproto">>, <<"2CDE2CDA36A80CE062CB90DC1EBEC4DF7AAF658AB40ED88D4A765A6C33DD441A">>},
- {<<"jsxd">>, <<"B2DBBB24A91536C50F75372FB8E28CD16691707AB53BE9449C59A8A611A581A2">>},
- {<<"mmath">>, <<"1B11E23B2D11E5D4897A30BAB3779CAAAB8E90EF82F3576D73ECE790DB0F4E57">>},
+ {<<"dproto">>, <<"350F8E41B226583EAD7379EF3003D9CBFA061B13A4D2DCCC3CA080535A4F1FCC">>},
+ {<<"jsxd">>, <<"C14114AFCA463F2D03D3FB6CC81FD51CDA8CA86A47E5AC3ABDF0CA572A73A413">>},
+ {<<"mmath">>, <<"3A0E6FF4C6C41D511BED481B0E61229BFBBCDBEFF196263DF918D349006081AE">>},
  {<<"poolboy">>, <<"6B46163901CFD0A1B43D692657ED9D7E599853B3B21B95AE5AE0A777CF9B6CA8">>},
  {<<"snappy">>, <<"D63449A58F1358046B7ADAEC166AE8929C2B19881E76C4E13284304FE887C39A">>}]}
 ].
