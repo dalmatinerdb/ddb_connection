@@ -1,14 +1,14 @@
 {"1.1.0",
-[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.2.2">>},0},
- {<<"dproto">>,{pkg,<<"dproto">>,<<"0.2.8">>},1},
+[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.4.0">>},0},
+ {<<"dproto">>,{pkg,<<"dproto">>,<<"0.4.0">>},1},
  {<<"jsxd">>,{pkg,<<"jsxd">>,<<"0.2.4">>},2},
  {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.15">>},1},
  {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0},
  {<<"snappyer">>,{pkg,<<"snappyer">>,<<"1.2.0">>},1}]}.
 [
 {pkg_hash,[
- {<<"ddb_client">>, <<"85787410F6FB11F8CF52499985860D08244FCF731055FCE92B139EB1140C8D1B">>},
- {<<"dproto">>, <<"2DE06A59EEDEBF1D177A8D7A86D509DD1ECA60A649A9585DAFD190330401B069">>},
+ {<<"ddb_client">>, <<"4E1D721CCCD895727AE0BC153BAC573D9742A9EB7F87F775B241141592D9F1EE">>},
+ {<<"dproto">>, <<"F7AA27865F34E299CD08681AA844658122B2FE734759569DD7495E876BE1B42B">>},
  {<<"jsxd">>, <<"C14114AFCA463F2D03D3FB6CC81FD51CDA8CA86A47E5AC3ABDF0CA572A73A413">>},
  {<<"mmath">>, <<"3A0E6FF4C6C41D511BED481B0E61229BFBBCDBEFF196263DF918D349006081AE">>},
  {<<"poolboy">>, <<"6B46163901CFD0A1B43D692657ED9D7E599853B3B21B95AE5AE0A777CF9B6CA8">>},
