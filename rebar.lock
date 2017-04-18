@@ -1,16 +1,26 @@
 {"1.1.0",
-[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.4.2">>},0},
- {<<"dproto">>,{pkg,<<"dproto">>,<<"0.4.1">>},1},
+[{<<"ddb_client">>,
+  {git,"https://github.com/dalmatinerdb/ddb_client.git",
+       {ref,"b87b4d44ba7cd8ecd70e2c7dfc7a6f958fe03957"}},
+  0},
+ {<<"dproto">>,
+  {git,"https://github.com/dalmatinerdb/dproto.git",
+       {ref,"f68cba09c7be0682693b3b7d59d5e4bb183d551d"}},
+  1},
+ {<<"dynamic_compile">>,{pkg,<<"dynamic_compile">>,<<"1.0.0">>},1},
+ {<<"ibrowse">>,{pkg,<<"ibrowse">>,<<"4.4.0">>},1},
  {<<"jsxd">>,{pkg,<<"jsxd">>,<<"0.2.4">>},2},
- {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.16">>},1},
+ {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.17">>},1},
+ {<<"otters">>,{pkg,<<"otters">>,<<"0.2.0">>},0},
  {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0},
  {<<"snappiest">>,{pkg,<<"snappiest">>,<<"1.2.0">>},2}]}.
 [
 {pkg_hash,[
- {<<"ddb_client">>, <<"C4D04B0621696A6F3A5FD0819125B11AB3EA0A01AB95F025CDC758ABF6275ECC">>},
- {<<"dproto">>, <<"A34C93BC248C9E06CF9098042EC14BB8B18A046FC5BFF986A128001F7E977C2F">>},
+ {<<"dynamic_compile">>, <<"8171B2CB4953EA3ED2EF63F5B26ABF677ACD0CA32210C2A08A7A8406A743F76B">>},
+ {<<"ibrowse">>, <<"2D923325EFE0D2CB09B9C6A047B2835A5EDA69D8A47ED6FF8BC03628B764E991">>},
  {<<"jsxd">>, <<"C14114AFCA463F2D03D3FB6CC81FD51CDA8CA86A47E5AC3ABDF0CA572A73A413">>},
- {<<"mmath">>, <<"F48E484FE66E5B2F3EAB5F26D3BE7EE9C1000461EB7FB1FF1D2EE76BCED7885E">>},
+ {<<"mmath">>, <<"DFD52637B19F1EEF6B0AAAC473CAC2FC27A7190B6A6420454A917423527F3030">>},
+ {<<"otters">>, <<"803007402C4B73ECFBC8145991A2855F48B1AE2D0CF17A6E7D24CFA98564328D">>},
  {<<"poolboy">>, <<"6B46163901CFD0A1B43D692657ED9D7E599853B3B21B95AE5AE0A777CF9B6CA8">>},
  {<<"snappiest">>, <<"25706FEBB5ECAEA900D879A89C6D967C8D1BF700F8546BEBD0DEA514A8CCBFB7">>}]}
 ].

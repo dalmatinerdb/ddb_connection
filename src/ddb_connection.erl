@@ -12,7 +12,7 @@
 -behaviour(poolboy_worker).
 
 %% API
--export([start_link/1, get/4, list/2, list/1, list/0, resolution/1, info/1]).
+-export([start_link/1, get/4, get/5, list/2, list/1, list/0, resolution/1, info/1]).
 -export([events/2, read_events/3, read_events/4]).
 -ignore_xref([start_link/2]).
 
@@ -40,9 +40,18 @@ read_events(Bucket, Start, End, Filter) ->
     Worker = worker({read_events, Bucket, Start, End, Filter}),
     transact(?POOL, Worker, ?TIMEOUT).
 
-get(Bucket, Metric, Time, Count) ->
-    Worker = worker({get, Bucket, Metric, Time, Count}),
+get(Bucket, Metric, Time, Count, Parent) ->
+    S  = otters:start_child(ddb_connection, Parent),
+    S1 = otters:log(S, "request pooled"),
+    S2 = otters:tag(S1, <<"bucket">>, Bucket),
+    S3 = otters:tag(S2, <<"metric">>, Metric),
+    S4 = otters:tag(S3, <<"time">>, Time),
+    S5 = otters:tag(S4, <<"count">>, Count),
+    Worker = worker({get, Bucket, Metric, Time, Count, S5}),
     transact(?POOL, Worker, ?TIMEOUT).
+
+get(Bucket, Metric, Time, Count) ->
+    get(Bucket, Metric, Time, Count, undefined).
 
 -spec resolution(binary()) ->
                         {ok, pos_integer()} |
@@ -146,16 +155,27 @@ handle_call({read_events, Bucket, Start, End, Filter}, _From,
             {reply, {error, E}, State#state{connection = C1}}
     end;
 
-handle_call({get, _, _, _, Count}, _From, State = #state{max_read = MaxRead})
+handle_call({get, _, _, _, Count, S}, _From, State = #state{max_read = MaxRead})
   when Count > MaxRead ->
+    S1 = otters:log(S, <<"unpooled">>),
+    S2 = otters:tag(S1, <<"result">>, <<"error">>),
+    S3 = otters:tag(S2, <<"error">>, {error, too_big}),
+    otters:finish(S3),
     {reply, {error, too_big}, State};
 
-handle_call({get, Bucket, Metric, Time, Count}, _From,
+handle_call({get, Bucket, Metric, Time, Count, S}, _From,
             State = #state{connection = C}) ->
-    case ddb_tcp:get(Bucket, Metric, Time, Count, C) of
+    TIDs = otters:ids(S),
+    S1 = otters:log(S, <<"unpooled">>),
+    case ddb_tcp:get(Bucket, Metric, Time, Count, [], TIDs, C) of
         {ok, D, C1} ->
+            S2 = otters:tag(S1, <<"result">>, <<"success">>),
+            otters:finish(S2),
             {reply, {ok, D}, State#state{connection = C1}};
         {error, E, C1} ->
+            S2 = otters:tag(S1, <<"result">>, <<"error">>),
+            S3 = otters:tag(S2, <<"error">>, E),
+            otters:finish(S3),
             {reply, {error, E}, State#state{connection = C1}}
     end;
 
