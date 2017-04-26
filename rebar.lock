@@ -1,18 +1,22 @@
 {"1.1.0",
-[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.1.6">>},0},
- {<<"dproto">>,{pkg,<<"dproto">>,<<"0.1.7">>},1},
+[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.5.3">>},0},
+ {<<"dproto">>,{pkg,<<"dproto">>,<<"0.5.1">>},1},
  {<<"dynamic_compile">>,{pkg,<<"dynamic_compile">>,<<"1.0.0">>},1},
  {<<"ibrowse">>,{pkg,<<"ibrowse">>,<<"4.4.0">>},1},
- {<<"mmath">>,{pkg,<<"mmath">>,<<"0.1.6">>},1},
+ {<<"jsxd">>,{pkg,<<"jsxd">>,<<"0.2.4">>},2},
+ {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.17">>},1},
  {<<"otters">>,{pkg,<<"otters">>,<<"0.2.4">>},0},
- {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0}]}.
+ {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0},
+ {<<"snappiest">>,{pkg,<<"snappiest">>,<<"1.2.0">>},2}]}.
 [
 {pkg_hash,[
- {<<"ddb_client">>, <<"ED9EC53F30A7C10063CA76DEBC4A7C678CDFAAFC5AF68F4AA9244F9462F015C1">>},
- {<<"dproto">>, <<"6B7079EA6147C119103DEA1D93F70DF95A50B97BDF3DCD3A637A8DE6843717F2">>},
+ {<<"ddb_client">>, <<"7AB1F5F82B7B60ED3FCCA7A1F1CA01EF75394578573345A069C77B251E01EAF7">>},
+ {<<"dproto">>, <<"F3AE35BF235F354079A36BC7E25109E644E0F6C3E8A012663BD8EB1D37540A75">>},
  {<<"dynamic_compile">>, <<"8171B2CB4953EA3ED2EF63F5B26ABF677ACD0CA32210C2A08A7A8406A743F76B">>},
  {<<"ibrowse">>, <<"2D923325EFE0D2CB09B9C6A047B2835A5EDA69D8A47ED6FF8BC03628B764E991">>},
- {<<"mmath">>, <<"E796EEDAF381A5E62D78FD6D2FB4D28714F6122064C32C0F1C8DE4A7772EE6A5">>},
+ {<<"jsxd">>, <<"C14114AFCA463F2D03D3FB6CC81FD51CDA8CA86A47E5AC3ABDF0CA572A73A413">>},
+ {<<"mmath">>, <<"DFD52637B19F1EEF6B0AAAC473CAC2FC27A7190B6A6420454A917423527F3030">>},
  {<<"otters">>, <<"ACFC0DB3A8D4D1EE1C3FD9CC6F7526D9A64AE50250194E602F7925D18E8302DC">>},
- {<<"poolboy">>, <<"6B46163901CFD0A1B43D692657ED9D7E599853B3B21B95AE5AE0A777CF9B6CA8">>}]}
+ {<<"poolboy">>, <<"6B46163901CFD0A1B43D692657ED9D7E599853B3B21B95AE5AE0A777CF9B6CA8">>},
+ {<<"snappiest">>, <<"25706FEBB5ECAEA900D879A89C6D967C8D1BF700F8546BEBD0DEA514A8CCBFB7">>}]}
 ].
