@@ -32,15 +32,16 @@ init([]) ->
     {Host, Port} = endpoint(),
     {ok, PoolSize} = application:get_env(ddb_connection, pool_size),
     {ok, PoolMax} = application:get_env(ddb_connection, pool_max),
+    PoolName = ddb_connection:pool(),
     SizeArgs = [
                 {size, PoolSize},
                 {max_overflow, PoolMax}
                ],
-    PoolArgs = [{name, {local, ddb_connection:pool()}},
+    PoolArgs = [{name, {local, PoolName}},
                 {worker_module, ddb_connection}] ++ SizeArgs,
     WorkerArgs = [Host, Port],
     {ok, {{one_for_one, 5, 10},
-          [poolboy:child_spec(?POOL, PoolArgs, WorkerArgs)]}}.
+          [poolboy:child_spec(PoolName, PoolArgs, WorkerArgs)]}}.
 
 endpoint() ->
     case application:get_env(ddb_connection, backend) of

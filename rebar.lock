@@ -1,22 +1,22 @@
 {"1.1.0",
-[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.5.3">>},0},
- {<<"dproto">>,{pkg,<<"dproto">>,<<"0.5.1">>},1},
+[{<<"ddb_client">>,{pkg,<<"ddb_client">>,<<"0.5.5">>},0},
+ {<<"dproto">>,{pkg,<<"dproto">>,<<"0.5.2">>},1},
  {<<"dynamic_compile">>,{pkg,<<"dynamic_compile">>,<<"1.0.0">>},1},
  {<<"ibrowse">>,{pkg,<<"ibrowse">>,<<"4.4.0">>},1},
  {<<"jsxd">>,{pkg,<<"jsxd">>,<<"0.2.4">>},2},
  {<<"mmath">>,{pkg,<<"mmath">>,<<"0.2.17">>},1},
- {<<"otters">>,{pkg,<<"otters">>,<<"0.2.4">>},0},
+ {<<"otters">>,{pkg,<<"otters">>,<<"0.2.8">>},0},
  {<<"poolboy">>,{pkg,<<"poolboy">>,<<"1.5.1">>},0},
  {<<"snappiest">>,{pkg,<<"snappiest">>,<<"1.2.0">>},2}]}.
 [
 {pkg_hash,[
- {<<"ddb_client">>, <<"7AB1F5F82B7B60ED3FCCA7A1F1CA01EF75394578573345A069C77B251E01EAF7">>},
- {<<"dproto">>, <<"F3AE35BF235F354079A36BC7E25109E644E0F6C3E8A012663BD8EB1D37540A75">>},
+ {<<"ddb_client">>, <<"86DDDCE3B379DD3B0B425299DCE86CA49AB00DE8B59DE876EF3F1FA780F39F11">>},
+ {<<"dproto">>, <<"D1C9929353589BD395CAB3E5C6E1CFC4DC8B0660527145E2DD221771D4467ABD">>},
  {<<"dynamic_compile">>, <<"8171B2CB4953EA3ED2EF63F5B26ABF677ACD0CA32210C2A08A7A8406A743F76B">>},
  {<<"ibrowse">>, <<"2D923325EFE0D2CB09B9C6A047B2835A5EDA69D8A47ED6FF8BC03628B764E991">>},
  {<<"jsxd">>, <<"C14114AFCA463F2D03D3FB6CC81FD51CDA8CA86A47E5AC3ABDF0CA572A73A413">>},
  {<<"mmath">>, <<"DFD52637B19F1EEF6B0AAAC473CAC2FC27A7190B6A6420454A917423527F3030">>},
- {<<"otters">>, <<"ACFC0DB3A8D4D1EE1C3FD9CC6F7526D9A64AE50250194E602F7925D18E8302DC">>},
+ {<<"otters">>, <<"4D28D810E3311E9BC845FBA20EBBE88CFF4AC26320B56A277603DDE134F24DC1">>},
  {<<"poolboy">>, <<"6B46163901CFD0A1B43D692657ED9D7E599853B3B21B95AE5AE0A777CF9B6CA8">>},
  {<<"snappiest">>, <<"25706FEBB5ECAEA900D879A89C6D967C8D1BF700F8546BEBD0DEA514A8CCBFB7">>}]}
 ].
