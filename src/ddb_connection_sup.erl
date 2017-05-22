@@ -15,7 +15,6 @@
 
 -ignore_xref([endpoint/0]).
 
--define(POOL, backend_connection).
 
 %%====================================================================
 %% API functions
@@ -37,7 +36,7 @@ init([]) ->
                 {size, PoolSize},
                 {max_overflow, PoolMax}
                ],
-    PoolArgs = [{name, {local, ?POOL}},
+    PoolArgs = [{name, {local, ddb_connection:pool()}},
                 {worker_module, ddb_connection}] ++ SizeArgs,
     WorkerArgs = [Host, Port],
     {ok, {{one_for_one, 5, 10},
