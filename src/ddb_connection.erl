@@ -12,7 +12,15 @@
 -behaviour(poolboy_worker).
 
 %% API
--export([start_link/1, get/4, get/5, list/2, list/1, list/0, resolution/1, info/1]).
+-export([start_link/1,
+         pool/0,
+         get/5, get/6,
+         list/1, list/2,
+         list_pfx/2, list_pfx/3,
+         list_buckets/0, list_buckets/1,
+         resolution/1, resolution/2,
+         info/1, info/2
+        ]).
 -export([events/2, read_events/3, read_events/4]).
 -ignore_xref([start_link/2]).
 
@@ -20,7 +28,6 @@
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2,
          terminate/2, code_change/3]).
 
--define(POOL, backend_connection).
 -define(TIMEOUT, 30000).
 -define(MAX_COUNT, 604800).
 -record(state, {connection, metrics=gb_trees:empty(), host, port,
@@ -30,17 +37,28 @@
 %%% API
 %%%===================================================================
 
+pool() ->
+    backend_connection.
+
 events(Bucket, Events) ->
+    events(pool(), Bucket, Events).
+
+events(Pool, Bucket, Events) ->
     Worker = worker({events, Bucket, Events}),
-    transact(?POOL, Worker, ?TIMEOUT).
+    transact(Pool, Worker, ?TIMEOUT).
 
 read_events(Bucket, Start, End) ->
     read_events(Bucket, Start, End, []).
 read_events(Bucket, Start, End, Filter) ->
+    read_events(pool(), Bucket, Start, End, Filter).
+read_events(Pool, Bucket, Start, End, Filter) ->
     Worker = worker({read_events, Bucket, Start, End, Filter}),
-    transact(?POOL, Worker, ?TIMEOUT).
+    transact(Pool, Worker, ?TIMEOUT).
 
 get(Bucket, Metric, Time, Count, Parent) ->
+    get(pool(), Bucket, Metric, Time, Count, Parent).
+
+get(Pool, Bucket, Metric, Time, Count, Parent) ->
     S  = otters:start_child(ddb_connection, Parent),
     S1 = otters:log(S, "request pooled"),
     S2 = otters:tag(S1, <<"bucket">>, Bucket),
@@ -48,16 +66,16 @@ get(Bucket, Metric, Time, Count, Parent) ->
     S4 = otters:tag(S3, <<"time">>, Time),
     S5 = otters:tag(S4, <<"count">>, Count),
     Worker = worker({get, Bucket, Metric, Time, Count, S5}),
-    transact(?POOL, Worker, ?TIMEOUT).
-
-get(Bucket, Metric, Time, Count) ->
-    get(Bucket, Metric, Time, Count, undefined).
+    transact(Pool, Worker, ?TIMEOUT).
 
 -spec resolution(binary()) ->
                         {ok, pos_integer()} |
                         {error, term()}.
 resolution(Bucket) ->
-    transact(?POOL,
+    resolution(pool(), Bucket).
+
+resolution(Pool, Bucket) ->
+    transact(Pool,
              fun(Worker) ->
                      gen_server:call(Worker, {resolution, Bucket}, ?TIMEOUT)
              end, ?TIMEOUT).
@@ -67,25 +85,37 @@ resolution(Bucket) ->
                   {error, term()}.
 
 info(Bucket) ->
-    transact(?POOL,
+    info(pool(), Bucket).
+
+info(Pool, Bucket) ->
+    transact(Pool,
              fun(Worker) ->
                      gen_server:call(Worker, {info, Bucket}, ?TIMEOUT)
              end, ?TIMEOUT).
 
 list(Bucket) ->
-    transact(?POOL,
+    list(pool(), Bucket).
+
+list(Pool, Bucket) ->
+    transact(Pool,
              fun(Worker) ->
                      gen_server:call(Worker, {list, Bucket}, ?TIMEOUT)
              end, ?TIMEOUT).
 
-list(Bucket, Prefix) ->
-    transact(?POOL,
+list_pfx(Bucket, Prefix) ->
+    list_pfx(pool(), Bucket, Prefix).
+
+list_pfx(Pool, Bucket, Prefix) ->
+    transact(Pool,
              fun(Worker) ->
                      gen_server:call(Worker, {list, Bucket, Prefix}, ?TIMEOUT)
              end, ?TIMEOUT).
 
-list() ->
-    transact(?POOL,
+list_buckets() ->
+    list_buckets(pool()).
+
+list_buckets(Pool) ->
+    transact(Pool,
              fun(Worker) ->
                      gen_server:call(Worker, list, ?TIMEOUT)
              end, ?TIMEOUT).
