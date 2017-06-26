@@ -48,9 +48,7 @@ endpoint() ->
         {ok, {Host, Port}} ->
             {Host, Port};
         _ ->
-            {ok, Host} = application:get_env(ddb_connection,
-                                             backend_host),
-            {ok, Port} = application:get_env(ddb_connection,
-                                             backend_port),
+            {ok, Host} = application:get_env(ddb_connection, backend_host),
+            {ok, Port} = application:get_env(ddb_connection, backend_port),
             {Host, Port}
     end.
